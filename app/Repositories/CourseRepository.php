@@ -22,4 +22,16 @@ class CourseRepository
         return $this->entity->create($data);
     }
 
+    public function getCourseByUUID(string $identify)
+    {
+        return $this->entity->where('uuid',$identify)->firstOrFail();
+    }
+
+    public function deleteByUuid(string $identify)
+    {
+        $course = $this->getCourseByUUID($identify);
+        return $course->delete();
+    }
+
+
 }

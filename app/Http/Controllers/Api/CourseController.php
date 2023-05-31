@@ -8,6 +8,7 @@ use App\Http\Resources\CourseResource;
 use App\Models\Course;
 use App\Services\CourseService;
 use Illuminate\Http\Request;
+use Ramsey\Collection\Collection;
 
 class CourseController extends Controller
 {
@@ -36,9 +37,10 @@ class CourseController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $identify): CourseResource
     {
-        //
+        $course = $this->courseService->getCourseByIdentify($identify);
+        return new CourseResource($course);
     }
 
     /**
@@ -52,8 +54,9 @@ class CourseController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $identify)
     {
-        //
+        $this->courseService->deleteCourse($identify);
+        return response()->json([],204);
     }
 }
