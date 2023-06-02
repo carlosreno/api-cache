@@ -7,6 +7,7 @@ use App\Http\Requests\StoreUpdateCourse;
 use App\Http\Resources\CourseResource;
 use App\Models\Course;
 use App\Services\CourseService;
+use http\Env\Response;
 use Illuminate\Http\Request;
 use Ramsey\Collection\Collection;
 
@@ -46,9 +47,10 @@ class CourseController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(StoreUpdateCourse $request, string $identify): string
     {
-        //
+        $this->courseService->updateCourse($identify,$request->validated());
+        return response()->json(['message'=>'updated']);
     }
 
     /**
