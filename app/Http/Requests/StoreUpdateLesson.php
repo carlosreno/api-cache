@@ -23,7 +23,7 @@ class StoreUpdateLesson extends FormRequest
     {
         $uuid = $this->lesson ?? '';
         return [
-            'module'=>['required','min:3','max:255'],
+            'module'=>['required','exists:modules,uuid'],
             'name' =>['required', 'min:3','max:255',"unique:courses,name,{$uuid},uuid"],
             'video' =>['required', 'min:3','max:255',"unique:courses,name,{$uuid},uuid"],
             'description' =>['nullable','min:3','max:9999'],

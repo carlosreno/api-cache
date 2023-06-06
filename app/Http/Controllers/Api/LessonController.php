@@ -30,8 +30,8 @@ class LessonController extends Controller
      */
     public function store(StoreUpdateLesson $request)
     {
-        $module = $this->lessonService->createNewLesson($request->validated());
-        return new LessonResource($module);
+        $lesson = $this->lessonService->createNewLesson($request->validated());
+        return new LessonResource($lesson);
     }
 
     /**
@@ -39,8 +39,8 @@ class LessonController extends Controller
      */
     public function show(string $module, string $identify)
     {
-        $module = $this->lessonService->getLessonByModule($module, $identify);
-        return new LessonResource($module);
+        $lesson = $this->lessonService->getLessonByModule($module, $identify);
+        return new LessonResource($lesson);
     }
 
     /**

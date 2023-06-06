@@ -37,10 +37,12 @@ class LessonService
         $moduleId = $this->moduleRepository->getModuleByUuid($module);
         return $this->moduleRepository->getModuleByUuid($identify,$moduleId);
     }
-    public function updateLesson(string $identify, array $validated)
+    public function updateLesson(string $identify, array $validated): void
     {
-        $moduleId = $this->moduleRepository->getModuleByUuid($validated['course'])->id;
-        return $this->lessonRepository->updateLessonByUuid($moduleId,$validated,$identify);
+
+        $module = $this->moduleRepository->getModuleByUuid($validated['module']);
+
+        $this->lessonRepository->updateLessonByUuid($module->id,$validated,$identify);
     }
 
     public function deleteLesson(string $identify): ?bool
