@@ -14,9 +14,10 @@ class ModuleResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return [
-            'name'=>$this->name,
-            'identify'=>$this->uuid
+            return [
+                'name'=>$this->name,
+                'identify'=>$this->uuid,
+                'lessons'=>LessonResource::collection($this->whenLoaded('lesson'))
         ];
     }
 }

@@ -4,11 +4,13 @@ use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\Api\{
     CourseController
 };
-use \App\Http\Controllers\Api\{
-    ModuleController
-};
+use App\Http\Controllers\Api\{LessonController, ModuleController};
+
 
 Route::apiResource('/courses/{course}/modules',ModuleController::class);
+
+Route::apiResource('/modules/{module}/lesson',LessonController::class);
+
 Route::get('/courses',[CourseController::class,'index']);
 Route::post('/course',[CourseController::class,'store']);
 Route::get('/course/{identify}',[CourseController::class,'show']);

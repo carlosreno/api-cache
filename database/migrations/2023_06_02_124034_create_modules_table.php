@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->uuid();
             $table->foreignId('course_id')->constrained('courses');
-            $table->string('name');
+            $table->string('name')->unique();
             $table->timestamps();
         });
     }

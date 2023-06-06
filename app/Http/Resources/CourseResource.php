@@ -20,6 +20,7 @@ class CourseResource extends JsonResource
             'title'=>$this->name,
             'description'=>$this->description,
             'date' => Carbon::make($this->created_at)->format('y-m-d'),
+            'modules'=>ModuleResource::collection($this->whenLoaded('modules'))
         ];
     }
 }
